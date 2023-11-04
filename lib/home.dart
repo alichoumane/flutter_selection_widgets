@@ -102,8 +102,8 @@ class _WarrantyState extends State<Warranty> {
 
   void changedSelection(int val){
     setState(() {
-      _years = val;
-      widget.updateWarranty(val);
+      this._years = val;
+      widget.updateWarranty(this._years);
     });
   }
 
@@ -143,7 +143,7 @@ class _InsuranceState extends State<Insurance> {
         Checkbox(value: _insurance, onChanged: (bool? val){
           setState(() {
             this._insurance = val as bool;
-            widget.updateInsurance(val as bool);
+            widget.updateInsurance(this._insurance);
           });})
       ],
     );
