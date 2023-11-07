@@ -48,9 +48,9 @@ class _HomeState extends State<Home> {
               const SizedBox(height: 10.0),
               MyDropdownMenu(updateCar: updateCar),
               const SizedBox(height: 20.0),
-              Warranty(updateWarranty: updateWarranty, car: car),
+              WarrantyWidget(updateWarranty: updateWarranty, car: car),
               const SizedBox(height: 20.0),
-              Insurance(updateInsurance: updateInsurance, car: car,),
+              InsuranceWidget(updateInsurance: updateInsurance, car: car,),
               const SizedBox(height: 10.0),
               Text('Total Price: $totalPrice', style: const TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),),
             ])));
@@ -83,16 +83,16 @@ class MyDropdownMenu extends StatelessWidget {
  * Warranty cutsom widget
  * It can also be implemented as stateless widget ...
  */
-class Warranty extends StatefulWidget {
+class WarrantyWidget extends StatefulWidget {
   final Function(int) updateWarranty;
   Car car;
-  Warranty({required this.updateWarranty, required this.car, super.key});
+  WarrantyWidget({required this.updateWarranty, required this.car, super.key});
 
   @override
-  State<Warranty> createState() => _WarrantyState();
+  State<WarrantyWidget> createState() => _WarrantyState();
 }
 
-class _WarrantyState extends State<Warranty> {
+class _WarrantyState extends State<WarrantyWidget> {
   int _years = 1;
 
   void changedSelection(int val){
@@ -119,16 +119,16 @@ class _WarrantyState extends State<Warranty> {
 /**
  * This is the Insurance custom widget
  */
-class Insurance extends StatefulWidget {
+class InsuranceWidget extends StatefulWidget {
   final Function(bool) updateInsurance;
   Car car;
-  Insurance({required this.updateInsurance, required this.car, super.key});
+  InsuranceWidget({required this.updateInsurance, required this.car, super.key});
 
   @override
-  State<Insurance> createState() => _InsuranceState();
+  State<InsuranceWidget> createState() => _InsuranceState();
 }
 
-class _InsuranceState extends State<Insurance> {
+class _InsuranceState extends State<InsuranceWidget> {
   bool _insurance = false;
 
   @override
