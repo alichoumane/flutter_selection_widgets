@@ -9,24 +9,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _years = 1;
   String totalPrice = cars.first.getTotalPrice(); // holds total car price
   Car car = cars.first; // set the first car to be displayed
-  bool _insurance = false;
 
   void updateCar(Car car) {
     // updates car price when the user selects a car form the dropdown
     setState(() {
       this.car = car;
-      car.warranty = _years;
-      car.insurance = _insurance;
       totalPrice = car.getTotalPrice();
     });
   }
 
   void updateWarranty(int warranty){
     setState(() {
-      _years = warranty;
       car.warranty = warranty;
       totalPrice = car.getTotalPrice();
     });
@@ -34,7 +29,6 @@ class _HomeState extends State<Home> {
 
   void updateInsurance(bool val){
     setState(() {
-      _insurance = val;
       car.insurance = val;
       totalPrice = car.getTotalPrice();
     });
@@ -66,9 +60,9 @@ class _HomeState extends State<Home> {
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('Warranty', style: TextStyle(fontSize: 25.0),),
-                  Radio(value: 1, groupValue: _years, onChanged: (int? val){updateWarranty(val as int);}),
+                  Radio(value: 1, groupValue: car.warranty, onChanged: (int? val){updateWarranty(val as int);}),
                   Text('1 year', style: TextStyle(fontSize: 25.0),),
-                  Radio(value: 5, groupValue: _years, onChanged: (int? val){updateWarranty(val as int);}),
+                  Radio(value: 5, groupValue: car.warranty, onChanged: (int? val){updateWarranty(val as int);}),
                   Text('5 years', style: TextStyle(fontSize: 25.0),),
                 ],
               ),
@@ -76,7 +70,7 @@ class _HomeState extends State<Home> {
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Insurance ?", style: TextStyle(fontSize: 25.0),),
-                  Checkbox(value: _insurance, onChanged: (bool? val){ updateInsurance(val as bool);})
+                  Checkbox(value: car.insurance, onChanged: (bool? val){ updateInsurance(val as bool);})
                 ],
               ),
               const SizedBox(height: 10.0),
