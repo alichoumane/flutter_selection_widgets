@@ -58,9 +58,9 @@ class _HomeState extends State<Home> {
 }
 
 /**
- * Dropdown custom widget
+ * Dropdown custom widget, it can be done as stateless widget, check both versions below
  */
-class MyDropdownMenu extends StatelessWidget {
+/*class MyDropdownMenu extends StatelessWidget {
   final Function(Car) updateCar;
   const MyDropdownMenu({required this.updateCar, super.key});
 
@@ -77,7 +77,32 @@ class MyDropdownMenu extends StatelessWidget {
       },
     );
   }
+}*/
+
+class MyDropdownMenu extends StatefulWidget {
+  final Function(Car) updateCar;
+  MyDropdownMenu({required this.updateCar, super.key});
+
+  @override
+  State<MyDropdownMenu> createState() => _MyDropdownMenuState();
 }
+
+class _MyDropdownMenuState extends State<MyDropdownMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return DropdownMenu(
+      dropdownMenuEntries: cars.map<DropdownMenuEntry<Car>>((Car car){
+        return DropdownMenuEntry(value: car, label: car.toString());
+      }).toList(),
+      width: 200.0,
+      initialSelection: cars.first,
+      onSelected: (Car? car){
+        widget.updateCar(car as Car);
+      },
+    );
+  }
+}
+
 
 /**
  * Warranty cutsom widget
