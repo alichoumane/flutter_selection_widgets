@@ -58,7 +58,9 @@ class _HomeState extends State<Home> {
 }
 
 /**
- * Dropdown custom widget, it can be done as stateless widget, check both versions below
+ * Dropdown custom widget,
+ * It can be done as stateless widget as in the following commented code
+ * Statefull widget version is below
  */
 /*class MyDropdownMenu extends StatelessWidget {
   final Function(Car) updateCar;
