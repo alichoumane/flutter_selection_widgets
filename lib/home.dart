@@ -89,34 +89,23 @@ class MyDropdownMenu extends StatelessWidget {
 }
 
 /**
- * Warranty cutsom widget
- * It can also be implemented as stateless widget ...
+ * Warranty custom widget
  */
-class WarrantyWidget extends StatefulWidget {
+class WarrantyWidget extends StatelessWidget {
   final Function(int) updateWarranty;
-  Car car;
-  WarrantyWidget({required this.updateWarranty, required this.car, super.key});
-
-  @override
-  State<WarrantyWidget> createState() => _WarrantyState();
-}
-
-class _WarrantyState extends State<WarrantyWidget> {
-  int _years = 1;
-
-  void changedSelection(int val) {
-    setState(() {
-      this._years = val;
-      widget.updateWarranty(this._years);
-    });
-  }
+  final Car car;
+  const WarrantyWidget({
+    required this.updateWarranty,
+    required this.car,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return RadioGroup<int>(
-      groupValue: widget.car.warranty,
+      groupValue: car.warranty,
       onChanged: (int? val) {
-        changedSelection(val as int);
+        updateWarranty(val as int);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -135,21 +124,14 @@ class _WarrantyState extends State<WarrantyWidget> {
 /**
  * This is the Insurance custom widget
  */
-class InsuranceWidget extends StatefulWidget {
+class InsuranceWidget extends StatelessWidget {
   final Function(bool) updateInsurance;
-  Car car;
-  InsuranceWidget({
+  final Car car;
+  const InsuranceWidget({
     required this.updateInsurance,
     required this.car,
     super.key,
   });
-
-  @override
-  State<InsuranceWidget> createState() => _InsuranceState();
-}
-
-class _InsuranceState extends State<InsuranceWidget> {
-  bool _insurance = false;
 
   @override
   Widget build(BuildContext context) {
@@ -158,12 +140,9 @@ class _InsuranceState extends State<InsuranceWidget> {
       children: [
         Text("Insurance ?", style: TextStyle(fontSize: 25.0)),
         Checkbox(
-          value: widget.car.insurance,
+          value: car.insurance,
           onChanged: (bool? val) {
-            setState(() {
-              this._insurance = val as bool;
-              widget.updateInsurance(this._insurance);
-            });
+            updateInsurance(val as bool);
           },
         ),
       ],
